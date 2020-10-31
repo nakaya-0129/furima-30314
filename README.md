@@ -24,7 +24,7 @@
 
 
 has_many :items
-belongs_to :purchase
+has_many :purchases
 
 
 ##  items テーブル
@@ -34,12 +34,12 @@ belongs_to :purchase
 | ----------------- | ---------- | ------------------------------ |
 | name              | string     | null: false                    | 
 | description       | text       | null: false                    |
-| status            | integer    | null: false                    |
-| category          | integer    | null: false                    | 
 | price             | integer    | null: false                    | 
-| shipping_cost     | integer    | null: false                    |
-| ship_days         | integer    | null: false                    |
-| shipping_area     | integer    | null: false                    |
+| status_id         | integer    | null: false                    |
+| category_id       | integer    | null: false                    | 
+| shipping_cost_id  | integer    | null: false                    |
+| ship_days_id      | integer    | null: false                    |
+| shipping_area_id  | integer    | null: false                    |
 | user              | string     | null: false                    |
 
 
@@ -55,7 +55,7 @@ hsa_one    :purchase
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
 | item            | references  | null: false, foreign_key:true  |
-| user            | string      | null: false, foreign_key:true  | 
+| user            | references  | null: false, foreign_key:true  | 
 
 
 ##  Association
@@ -72,11 +72,11 @@ has_one :address
 | --------------- | ----------- | ------------------------------ |
 | postal_code     | string      | null: false                    | 
 | prefectures     | integer     | null: false                    | 
-| municipal       | integer     | null: false                    | 
-| house_number    | integer     | null: false                    | 
+| municipal       | string      | null: false                    | 
+| house_number    | string      | null: false                    | 
 | building        | string      |                                |
-| phone_number    | integer     | null: false                    |
-| purchases_user  | references  | null: false                    |
+| phone_number    | string      | null: false                    |
+| purchases       | references  | null: false                    |
 
 ##  Association
 
