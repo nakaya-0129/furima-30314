@@ -8,37 +8,43 @@
 
 
 
-| Column     | Type   | Options                   |
-| ---------- | ------ | ------------------------  |
-| nick_name  | string | null: false               | 
-| email      | string | null: false, unique: true | 
-| password   | string | null: false               | 
-| user_name  | string | null: false               | 
-| birthday   | date   | null: false                
+| Column              | Type   | Options                             |
+| ------------------- | ------ | ----------------------------------- |
+| nick_name           | string | null: false                         | 
+| email               | string | null: false, unique: true           | 
+| encrypted_password  | string | null: false                         | 
+| surname             | string | null: false                         |
+| first_name          | string | null: false                         |
+| surname_kana        | string | null: false                         |
+| first_name_kana     | string | null: false                         | 
+| birthday            | date   | null: false                         |
 
 
 ##  Association
 
 
 has_many :items
-has_one  :purchases
+belongs_to :purchase
 
 
 ##  items テーブル
 
 
-| Column     | Type       | Options                        |
-| ---------- | ---------- | ------------------------------ |
-| items_name | string     | null: false                    | 
-| category   | string     | null: false                    | 
-| price      | integer    | null: false                    | 
-| user       | references | null: false, foreign_key:true  |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| item_name         | string     | null: false                    | 
+| item_description  | text       | null: false                    |
+| item_status       | string     | null: false                    |
+| image             | text       | null: false                    |
+| category          | string     | null: false                    | 
+| price             | integer    | null: false                    | 
+| user              | references | null: false, foreign_key:true  |
 
 
 ##  Associationbe
 
 belongs_to :user
-hsa_one    :purchases
+hsa_one    :purchase
 
 
 ##  purchases  テーブル
@@ -46,15 +52,45 @@ hsa_one    :purchases
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
-| address         | string      | null: false                    | 
-| shipping_area   | string      | null: false                    | 
-| shipping_days   | date        | null: false                    | 
-| delivery_charge | integer     | null: false                    | 
-| card_info       | string      | null: false                    | 
-| user            | references  | null: false, foreign_key:true  |
-| price           | references  | null: false, foreign_key:true  |
+| user            | references  | null: false, foreign_key:true  | 
+| item            | references  | null: false, foreign_key:true  | 
+
 
 ##  Association
 
 belongs_to :user
-belongs_to :items
+belongs_to :item
+
+
+##  address テーブル
+
+
+| Column          | Type        | Options                        |
+| --------------- | ----------- | ------------------------------ |
+| postal_code     | string      | null: false                    | 
+| prefectures     | string      | null: false                    | 
+| municipal       | string      | null: false                    | 
+| house_number    | string      | null: false                    | 
+| building        | string      |                                |
+| phone_number    | integer     | null: false                    |
+
+
+##  Association
+
+
+belongs_to :purchase
+
+
+## shipping テーブル
+
+
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| shipping_cost   | integer    | null: false                    |
+| ship_days       | integer    | null: false                    |
+| consignor       | string     | null: false                    |
+
+
+## Association
+
+belongs_to :item
