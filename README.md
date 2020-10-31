@@ -35,10 +35,12 @@ belongs_to :purchase
 | item_name         | string     | null: false                    | 
 | item_description  | text       | null: false                    |
 | item_status       | string     | null: false                    |
-| image             | text       | null: false                    |
 | category          | string     | null: false                    | 
 | price             | integer    | null: false                    | 
-| user              | references | null: false, foreign_key:true  |
+| shipping_cost     | integer    | null: false                    |
+| ship_days         | integer    | null: false                    |
+| shipping_area     | string     | null: false                    |
+| user              | references | null: false                    |
 
 
 ##  Associationbe
@@ -52,14 +54,16 @@ hsa_one    :purchase
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
+| buyer_user      | string      | null: false                    | 
+| item            | references  | null: false, foreign_key:true  |
 | user            | references  | null: false, foreign_key:true  | 
-| item            | references  | null: false, foreign_key:true  | 
 
 
 ##  Association
 
 belongs_to :user
 belongs_to :item
+has_one :address
 
 
 ##  address テーブル
@@ -67,30 +71,16 @@ belongs_to :item
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
-| postal_code     | string      | null: false                    | 
+| postal_code     | integer     | null: false                    | 
 | prefectures     | string      | null: false                    | 
 | municipal       | string      | null: false                    | 
 | house_number    | string      | null: false                    | 
 | building        | string      |                                |
 | phone_number    | integer     | null: false                    |
-
+| buyer_user      | references  | null: false                    |
 
 ##  Association
-
 
 belongs_to :purchase
 
 
-## shipping テーブル
-
-
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| shipping_cost   | integer    | null: false                    |
-| ship_days       | integer    | null: false                    |
-| consignor       | string     | null: false                    |
-
-
-## Association
-
-belongs_to :item
