@@ -32,15 +32,15 @@ belongs_to :purchase
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| item_name         | string     | null: false                    | 
-| item_description  | text       | null: false                    |
-| item_status       | string     | null: false                    |
-| category          | string     | null: false                    | 
+| name              | string     | null: false                    | 
+| description       | text       | null: false                    |
+| status            | integer    | null: false                    |
+| category          | integer    | null: false                    | 
 | price             | integer    | null: false                    | 
 | shipping_cost     | integer    | null: false                    |
 | ship_days         | integer    | null: false                    |
-| shipping_area     | string     | null: false                    |
-| user              | references | null: false                    |
+| shipping_area     | integer    | null: false                    |
+| user              | string     | null: false                    |
 
 
 ##  Associationbe
@@ -54,9 +54,8 @@ hsa_one    :purchase
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
-| buyer_user      | string      | null: false                    | 
 | item            | references  | null: false, foreign_key:true  |
-| user            | references  | null: false, foreign_key:true  | 
+| user            | string      | null: false, foreign_key:true  | 
 
 
 ##  Association
@@ -71,13 +70,13 @@ has_one :address
 
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
-| postal_code     | integer     | null: false                    | 
-| prefectures     | string      | null: false                    | 
-| municipal       | string      | null: false                    | 
-| house_number    | string      | null: false                    | 
+| postal_code     | string      | null: false                    | 
+| prefectures     | integer     | null: false                    | 
+| municipal       | integer     | null: false                    | 
+| house_number    | integer     | null: false                    | 
 | building        | string      |                                |
 | phone_number    | integer     | null: false                    |
-| buyer_user      | references  | null: false                    |
+| purchases_user  | references  | null: false                    |
 
 ##  Association
 
