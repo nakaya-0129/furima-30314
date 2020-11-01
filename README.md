@@ -1,24 +1,85 @@
-# README
+# FURIMA-30314
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
+# テーブル設計
 
-* Ruby version
 
-* System dependencies
+##  users テーブル
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+| Column              | Type   | Options                             |
+| ------------------- | ------ | ----------------------------------- |
+| nick_name           | string | null: false                         | 
+| email               | string | null: false, unique: true           | 
+| encrypted_password  | string | null: false                         | 
+| surname             | string | null: false                         |
+| first_name          | string | null: false                         |
+| surname_kana        | string | null: false                         |
+| first_name_kana     | string | null: false                         | 
+| birthday            | date   | null: false                         |
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
+##  Association
 
-* Deployment instructions
 
-* ...
+has_many :items
+has_many :purchases
+
+
+##  items テーブル
+
+
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| name              | string     | null: false                    | 
+| description       | text       | null: false                    |
+| price             | integer    | null: false                    | 
+| status_id         | integer    | null: false                    |
+| category_id       | integer    | null: false                    | 
+| shipping_cost_id  | integer    | null: false                    |
+| ship_days_id      | integer    | null: false                    |
+| shipping_area_id  | integer    | null: false                    |
+| user              | references | null: false, foreign_key:true  |
+
+
+##  Associationbe
+
+belongs_to :user
+hsa_one    :purchase
+
+
+##  purchases  テーブル
+
+
+| Column          | Type        | Options                        |
+| --------------- | ----------- | ------------------------------ |
+| item            | references  | null: false, foreign_key:true  |
+| user            | references  | null: false, foreign_key:true  | 
+
+
+##  Association
+
+belongs_to :user
+belongs_to :item
+has_one :address
+
+
+##  address テーブル
+
+
+| Column          | Type        | Options                        |
+| --------------- | ----------- | ------------------------------ |
+| postal_code     | string      | null: false                    | 
+| prefectures_id  | integer     | null: false                    | 
+| municipal       | string      | null: false                    | 
+| house_number    | string      | null: false                    | 
+| building        | string      |                                |
+| phone_number    | string      | null: false                    |
+| purchases       | references  | null: false                    |
+
+##  Association
+
+belongs_to :purchase
+
+
