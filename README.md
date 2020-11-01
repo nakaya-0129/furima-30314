@@ -40,7 +40,7 @@ has_many :purchases
 | shipping_cost_id  | integer    | null: false                    |
 | ship_days_id      | integer    | null: false                    |
 | shipping_area_id  | integer    | null: false                    |
-| user              | string     | null: false                    |
+| user              | references | null: false, foreign_key:true  |
 
 
 ##  Associationbe
@@ -71,7 +71,7 @@ has_one :address
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
 | postal_code     | string      | null: false                    | 
-| prefectures     | integer     | null: false                    | 
+| prefectures_id  | integer     | null: false                    | 
 | municipal       | string      | null: false                    | 
 | house_number    | string      | null: false                    | 
 | building        | string      |                                |
