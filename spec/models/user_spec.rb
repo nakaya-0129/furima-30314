@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
     end
 
     it "password:半角英数混合、全角では登録できない" do
-      @user.password = "GOKO00"
+      @user.password = ""
       @user.valid?
       expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
     end
