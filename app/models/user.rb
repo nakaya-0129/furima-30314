@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
          PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
          validates_format_of :password, with: PASSWORD_REGEX, message: "Include both letters and numbers"
-         validates :email, confirmation: true, uniqueness: true, inclusion: { in: ["@"]}
+         validates :email, confirmation: true, uniqueness: true, inclusion: { in: ["@"]},length: { minimum: 6 }
          validates :nick_name, presence: true, uniqueness: true 
          validates :surname, presence: true, format: {with: /\A[一-龥ぁ-ん]/, message: 'Full-width characters'}
          validates :first_name, presence: true, format: {with: /\A[一-龥ぁ-ん]/, message: 'Full-width characters'} 
