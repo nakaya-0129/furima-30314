@@ -18,9 +18,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def update
-    @item = Item.new
-  end
   
   private
   def item_params
