@@ -123,7 +123,7 @@
     <%= link_to '新規投稿商品', "/items/new", class: "subtitle" %>
     <ul class='item-lists'>
       <% @items.each do |item| %>
-        <%= link_to "#" do %>
+        <%= link_to item_path(item.id) do %>
         <li class='list'>
           <div class='item-img-content'>
             <%= image_tag item.image.variant(gravity: :center, resize: '220x220').processed, class: "item-image" if item.image.attached? %>
