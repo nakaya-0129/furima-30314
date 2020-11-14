@@ -25,8 +25,9 @@
     <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
-    <% elsif @item.present? %>
+    <% elsif user_signed_in? && @item.present? %>
     <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+    <% else %>
     <% end %>
 
     <div class="item-explain-box">
