@@ -127,7 +127,6 @@
         <li class='list'>
           <div class='item-img-content'>
             <%= image_tag item.image.variant(gravity: :center, resize: '220x220').processed, class: "item-image" if item.image.attached? %>
-         <% end %>
               <% if item.blank? %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
@@ -139,21 +138,20 @@
             <%= item.name %>
           </h3>
           <div class='item-price'>
-            <span><%= item.price %>円<br><%= '配送料負担' %></span>
+            <span><%= item.price %>円<br><%= item.shipping_cost.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
             </div>
           </div>
+          <% end %>
           <% end %> 
          </div>
         </li>
-      <% @items.each do |item| %>
-      <% if item.blank? %>
+      <% if @items.blank? %>
       <li class='list'>
         <%= link_to '#' do %>
         <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
-        <% end %>
         <div class='item-info'>
           <h3 class='item-name'>
             商品を出品してね！
@@ -166,8 +164,8 @@
             </div>
           </div>
         </div>
+        <% end %>
       </li>
-      <% end %>
       <% end %>
     </ul>
   </div>
