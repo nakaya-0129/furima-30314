@@ -124,16 +124,17 @@
     <ul class='item-lists'>
       <% @items.each do |item| %>
         <%= link_to "#" do %>
-      <li class='list'>
-        <div class='item-img-content'>
-          <%= image_tag item.image.variant(resize: '136.28x136.28'), class: "item-image" if item.image.attached? %>
-          <% if item.blank? %>
-          <div class='sold-out'>
-            <span>Sold Out!!</span>
+        <li class='list'>
+          <div class='item-img-content'>
+            <%= image_tag item.image.variant(gravity: :center, resize: '220x220').processed, class: "item-image" if item.image.attached? %>
+         <% end %>
+              <% if item.blank? %>
+                <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                </div>
+              <% end %>
           </div>
-          <% end %>
-        </div>
-        <div class='item-info'>
+         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.name %>
           </h3>
@@ -144,10 +145,9 @@
               <span class='star-count'>0</span>
             </div>
           </div>
-        </div>
-        <% end %>
-        <% end %>
-      </li>
+          <% end %> 
+         </div>
+        </li>
       <% @items.each do |item| %>
       <% if item.blank? %>
       <li class='list'>
