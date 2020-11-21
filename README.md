@@ -46,10 +46,10 @@ has_many :purchases
 ##  Associationbe
 
 belongs_to :user
-hsa_one    :purchase
+hsa_one    :order
 
 
-##  purchases  テーブル
+##  orders  テーブル
 
 
 | Column          | Type        | Options                        |
@@ -71,15 +71,15 @@ has_one :address
 | Column          | Type        | Options                        |
 | --------------- | ----------- | ------------------------------ |
 | postal_code     | string      | null: false                    | 
-| prefectures_id  | integer     | null: false                    | 
+| shipping_area_id  | integer     | null: false                    | 
 | municipal       | string      | null: false                    | 
 | house_number    | string      | null: false                    | 
 | building        | string      |                                |
 | phone_number    | string      | null: false                    |
-| purchases       | references  | null: false                    |
+| orders       | references  | null: false                    |
 
 ##  Association
 
-belongs_to :purchase
+belongs_to :orders
 
 
