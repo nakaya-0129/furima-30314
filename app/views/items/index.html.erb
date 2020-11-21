@@ -127,7 +127,7 @@
         <li class='list'>
           <div class='item-img-content'>
             <%= image_tag item.image.variant(gravity: :center, resize: '220x220').processed, class: "item-image" if item.image.attached? %>
-              <% if item.blank? %>
+              <% if item.order.present? %>
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>
